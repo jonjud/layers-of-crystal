@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Layers of Crystals"
+run/main_scene="uid://dy4fatj4ik4h7"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*uid://r0xkggl3xup8"
 
 [display]
 
