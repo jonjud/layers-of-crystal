@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d28edxpvy5j53" path="res://scripts/bullet.gd" id="1_mkf8s"]
 
-[node name="bullet" type="Node2D" unique_id=2072592540]
+[sub_resource type="CircleShape2D" id="CircleShape2D_htemk"]
+radius = 4.0
+
+[node name="bullet" type="Area2D" unique_id=4185051]
 script = ExtResource("1_mkf8s")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1591585900]
@@ -18,3 +21,6 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.55277646, 0.98709553, 0.716208, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=631819488]
+shape = SubResource("CircleShape2D_htemk")

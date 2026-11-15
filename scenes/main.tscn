@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cywslhkm0wuak" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://8flnt04lmmlf" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bs6ff2wf7tgg4" path="res://assets/tiles/bg.png" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c5x6cop7080io" path="res://scenes/zombie.tscn" id="4_jyhfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(640, 145)
@@ -21,7 +22,7 @@ texture = ExtResource("2_sugp2")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=694622041]
 position = Vector2(320, 285)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1611607588]
 anchors_preset = 8
@@ -42,3 +43,7 @@ shape = SubResource("RectangleShape2D_htemk")
 
 [node name="player" parent="." unique_id=1168915799 instance=ExtResource("1_o5qli")]
 position = Vector2(50, 170)
+
+[node name="Zombie" parent="." unique_id=704269014 instance=ExtResource("4_jyhfs")]
+position = Vector2(362, 178)
+disable_mode = 1

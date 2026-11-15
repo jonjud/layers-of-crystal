@@ -13,6 +13,7 @@ var stats : Dictionary = {
 }
 
 func _ready() -> void:
+	add_to_group("player")
 	for i in stats:
 		print(i ,stats[i])
 

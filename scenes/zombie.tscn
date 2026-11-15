@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c5x6cop7080io"]
+
+[ext_resource type="Script" uid="uid://cscqb6tdxr7t5" path="res://scripts/zombie.gd" id="1_1vlb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
+size = Vector2(32, 32)
+
+[node name="Zombie" type="CharacterBody2D" unique_id=704269014]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_1vlb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958518629]
+shape = SubResource("RectangleShape2D_htemk")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1736947445]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
