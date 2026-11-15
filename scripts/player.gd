@@ -3,6 +3,9 @@ extends CharacterBody2D
 var stats : Dictionary = {
 	"hp" : 10,
 	"mana" : 50,
+}
+
+var damages : Dictionary = {
 	"physical damage" : 10,
 	"fire damage" : 5,
 	"wind damage" : 5,
@@ -11,6 +14,8 @@ var stats : Dictionary = {
 	"light damage" : 5,
 	"darkness damage" : 5,
 }
+
+var tot_damage : float
 
 func _ready() -> void:
 	add_to_group("player")

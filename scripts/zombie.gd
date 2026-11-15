@@ -3,9 +3,11 @@ extends CharacterBody2D
 var speed : float = 60.0
 var wiz : Node2D
 
-var hp : float = 5.0
+var hp : float
+var max_hp : float = 100.0
 
 func _ready() -> void:
+	hp = max_hp
 	add_to_group("zombie")
 	wiz = get_tree().get_first_node_in_group("player")
 
@@ -19,7 +21,7 @@ func damage(amount: float) -> void:
 	if amount < 0:
 		return
 	hp = max(hp-amount,0)
-	print("hp : ",hp," / 5")
+	print("hp : ",hp," / ", max_hp)
 	if hp  <= 0:
 		die()
 
