@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dsr4f0xnk6d1v"]
+
+[ext_resource type="Script" uid="uid://cghdhsau411pe" path="res://scripts/game_over.gd" id="1_xeevv"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=1206959117]
+script = ExtResource("1_xeevv")
+
+[node name="Control" type="Control" parent="." unique_id=1114470575]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1535979329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54509807, 0.27058825, 0.07450981, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=183968505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer" unique_id=1115877770]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Control/CenterContainer/VBoxContainer" unique_id=425157398]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+
+[node name="RestartButton" type="Button" parent="Control/CenterContainer/VBoxContainer" unique_id=649796620]
+layout_mode = 2
+text = "Restart"

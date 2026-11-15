@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8flnt04lmmlf" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bs6ff2wf7tgg4" path="res://assets/tiles/bg.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://c5x6cop7080io" path="res://scenes/zombie.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dsr4f0xnk6d1v" path="res://scenes/game_over.tscn" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(640, 145)
@@ -47,3 +48,12 @@ position = Vector2(50, 170)
 [node name="Zombie" parent="." unique_id=704269014 instance=ExtResource("4_jyhfs")]
 position = Vector2(362, 178)
 disable_mode = 1
+
+[node name="Zombie2" parent="." unique_id=1031054374 instance=ExtResource("4_jyhfs")]
+position = Vector2(414, 159)
+
+[node name="Zombie3" parent="." unique_id=570317170 instance=ExtResource("4_jyhfs")]
+position = Vector2(463, 168)
+
+[node name="GameOver" parent="." unique_id=1206959117 instance=ExtResource("5_tbgi4")]
+visible = false

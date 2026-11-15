@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14cdr"]
+size = Vector2(33, 33)
+
 [node name="Zombie" type="CharacterBody2D" unique_id=704269014]
 collision_layer = 4
 collision_mask = 7
@@ -12,6 +15,13 @@ script = ExtResource("1_1vlb3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958518629]
 shape = SubResource("RectangleShape2D_htemk")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1510301150]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=848096723]
+shape = SubResource("RectangleShape2D_14cdr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1736947445]
 anchors_preset = 8

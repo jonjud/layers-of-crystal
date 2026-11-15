@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 var stats : Dictionary = {
-	"hp" : 10,
+	"hp" : 100.0,
 	"mana" : 50,
 }
 
-var damages : Dictionary = {
+var base_damages : Dictionary = {
 	"physical damage" : 10,
 	"fire damage" : 5,
 	"wind damage" : 5,
@@ -15,12 +15,24 @@ var damages : Dictionary = {
 	"darkness damage" : 5,
 }
 
-var tot_damage : float
+
 
 func _ready() -> void:
 	add_to_group("player")
 	for i in stats:
 		print(i ,stats[i])
+
+func damage(amount : int) -> void:
+	if amount < 0:
+		return
+	stats["hp"] = max(stats["hp"] - amount,0)
+	print("player hp : ",stats["hp"])
+	if stats["hp"] <= 0:
+		die()
+
+func die() -> void:
+	SignalBus.player_died.emit()
+	queue_free()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
