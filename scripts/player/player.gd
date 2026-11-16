@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var stats : Dictionary = {
-	"hp" : 100.0,
+	"max_hp" : 100.0,
 	"mana" : 50,
 }
 
@@ -15,9 +15,10 @@ var base_damages : Dictionary = {
 	"darkness damage" : 5,
 }
 
-
+var hp : float
 
 func _ready() -> void:
+	hp = stats["max_hp"]
 	add_to_group("player")
 	for i in stats:
 		print(i ,stats[i])
@@ -25,9 +26,9 @@ func _ready() -> void:
 func damage(amount : int) -> void:
 	if amount < 0:
 		return
-	stats["hp"] = max(stats["hp"] - amount,0)
-	print("player hp : ",stats["hp"])
-	if stats["hp"] <= 0:
+	hp = max(hp - amount,0)
+	print("player hp : ",hp)
+	if hp <= 0:
 		die()
 
 func die() -> void:
