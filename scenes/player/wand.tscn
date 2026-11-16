@@ -2,21 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bx3twte251mc8" path="res://scripts/player/wand.gd" id="1_nrc3s"]
 [ext_resource type="PackedScene" uid="uid://c2ko72kvn3rad" path="res://scenes/player/bullet.tscn" id="2_ran2g"]
+[ext_resource type="Texture2D" uid="uid://7tfsknn2ldy" path="res://assets/sprites/wand.png" id="3_850qe"]
 
 [node name="Wand" type="Node2D" unique_id=1789655916]
 script = ExtResource("1_nrc3s")
 bullet_scene = ExtResource("2_ran2g")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1730544139]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.7294118, 0.33333334, 0.827451, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1298949430]
+texture = ExtResource("3_850qe")

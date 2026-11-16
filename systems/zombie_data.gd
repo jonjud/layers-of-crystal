@@ -6,3 +6,4 @@ extends RefCounted
 @export var damage : float = 30.0
 @export var color : Color = Color.CRIMSON
 @export var size : float = 32.0
+@export var money : int = 30.0	

@@ -11,4 +11,5 @@ func _ready() -> void:
 		
 
 func _process(delta: float) -> void:
-	hp_bar.value = player.hp
+	if player:
+		hp_bar.value = player.hp

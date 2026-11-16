@@ -5,9 +5,10 @@ var wiz : Node2D
 
 var hp : float
 var max_hp : float = 100.0
+var money : int = 30
 
 var damage_amount : float = 60.0
-
+@export var coin_scene : PackedScene
 
 func _ready() -> void:
 	hp = max_hp
@@ -34,6 +35,10 @@ func damage(amount: float) -> void:
 		die()
 
 func die() -> void:
+	var coin : Coins = coin_scene.instantiate()
+	coin.value = money
+	coin.position = global_position
+	get_tree().current_scene.call_deferred("add_child",coin)
 	SignalBus.zombie_died.emit()
 	queue_free()
 

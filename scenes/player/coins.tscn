@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b0d8akvk5xly"]
+
+[ext_resource type="Script" uid="uid://dyvnbw8s7rrwy" path="res://scripts/player/coins.gd" id="1_1110h"]
+[ext_resource type="Texture2D" uid="uid://d30fq04a0c3r3" path="res://assets/tiles/coins.png" id="2_riqeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
+size = Vector2(8, 8)
+
+[node name="coins" type="Area2D" unique_id=280963417]
+script = ExtResource("1_1110h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1101985934]
+texture = ExtResource("2_riqeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1229627827]
+shape = SubResource("RectangleShape2D_htemk")
