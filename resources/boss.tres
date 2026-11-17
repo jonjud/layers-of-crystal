@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ZombieData" format=3 uid="uid://drwrxf4mx82fp"]
+
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_hcy7r"]
+
+[resource]
+script = ExtResource("1_hcy7r")
+zombie_type = 4
+metadata/_custom_type_script = "uid://mgu10cdpn70m"

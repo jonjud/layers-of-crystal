@@ -22,5 +22,5 @@ func _on_body_entered(body : Node2D) -> void:
 	if body.is_in_group("zombie"):
 		if body.has_method("damage"):
 			for i in GameManager.true_damages:
-				body.damage(GameManager.true_damages[i])
+				body.damage(GameManager.true_damages[i],i)
 			queue_free()

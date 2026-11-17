@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bevb0ko2knpnc"]
 
 [ext_resource type="PackedScene" uid="uid://8flnt04lmmlf" path="res://scenes/player/player.tscn" id="1_lx5au"]
+[ext_resource type="Script" uid="uid://cimu7akjb62m" path="res://scripts/shop.gd" id="1_xfvoa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(240, 40)
 
 [node name="shop" type="Node2D" unique_id=692468741]
+script = ExtResource("1_xfvoa")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1865360762]
 position = Vector2(120, 225)

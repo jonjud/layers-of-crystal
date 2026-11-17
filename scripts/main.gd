@@ -14,3 +14,7 @@ func spawn_zwambeh() -> void:
 	var zwambeh : Zombie = zombie_scene.instantiate()
 	zwambeh.global_position = spawn_point
 	get_tree().current_scene.add_child(zwambeh)
+
+
+func _on_go_shop_button_button_down() -> void:
+	get_tree().change_scene_to_file("res://scenes/shop.tscn")

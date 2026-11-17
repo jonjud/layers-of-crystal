@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ZombieData" format=3 uid="uid://dqugshk0wqet1"]
+
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_0r5ur"]
+
+[resource]
+script = ExtResource("1_0r5ur")
+zombie_type = 1
+color = Color(0.5762587, 0.46305305, 0.96133345, 1)
+metadata/_custom_type_script = "uid://mgu10cdpn70m"

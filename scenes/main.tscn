@@ -56,3 +56,12 @@ visible = false
 [node name="Timer" type="Timer" parent="." unique_id=1466691320]
 wait_time = 2.0
 autostart = true
+
+[node name="GoShopButton" type="Button" parent="." unique_id=507045891]
+offset_left = 498.0
+offset_top = 73.0
+offset_right = 590.0
+offset_bottom = 104.0
+text = "Go to shop"
+
+[connection signal="button_down" from="GoShopButton" to="." method="_on_go_shop_button_button_down"]

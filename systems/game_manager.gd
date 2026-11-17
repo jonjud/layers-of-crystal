@@ -60,6 +60,7 @@ func _ready() -> void:
 func _on_zombie_died() -> void:
 	to_keep["kill count"] += 1
 
+
 func _on_money_added(amount : int) -> void:
 	to_keep["money"] = amount
 

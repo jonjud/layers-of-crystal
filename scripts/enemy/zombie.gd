@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Zombie
 
 var speed : float = 60.0
-var wiz : Node2D
+var wiz : Node2D #player
 
 var hp : float
 var max_hp : float = 600.0
@@ -11,10 +11,14 @@ var money : int = 30
 var damage_amount : float = 60.0
 @export var coin_scene : PackedScene
 
+@export var zb_type : ZombieData
+
 func _ready() -> void:
-	hp = max_hp
+	zb_type = zb_type.duplicate(true)
+	hp = zb_type.max_health
 	add_to_group("zombie")
 	wiz = get_tree().get_first_node_in_group("player")
+	zb_type.random_type_of_resistance_and_assign_values()
 	$HurtBox.body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
@@ -27,10 +31,11 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func damage(amount: float) -> void:
+func damage(amount: float , type : String) -> void:
 	if amount < 0:
 		return
-	hp = max(hp-amount,0)
+	var final_damage : float = zb_type.calculate_recieved_damage(amount ,type)
+	hp = max(hp- final_damage,0)
 	print("hp : ",hp," / ", max_hp)
 	if hp  <= 0:
 		die()
