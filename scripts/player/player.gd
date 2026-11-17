@@ -1,40 +1,25 @@
 extends CharacterBody2D
 
-var stats : Dictionary = {
-	"max_hp" : 100.0,
-	"mana" : 50,
-	"money" : 0,
-}
-
-var base_damages : Dictionary = {
-	"physical damage" : 10,
-	"fire damage" : 5,
-	"wind damage" : 5,
-	"water damage" : 5,
-	"earth damage" : 5,
-	"light damage" : 5,
-	"darkness damage" : 5,
-}
-
 var hp : float
+var mana : float
 
 func _ready() -> void:
-	hp = stats["max_hp"]
+	hp = GameManager.to_keep["max_hp"]
+	mana = GameManager.to_keep["max_mana"]
 	add_to_group("player")
-	for i in stats:
-		print(i ,stats[i])
+	
 
 func add_money(amount : int) -> void:
 	if amount < 0:
 		return
-	stats["money"] += amount
+	SignalBus.money_added.emit(amount)
 
 func remove_money(amount : int) -> void:
 	if amount < 0:
 		return
-	if stats["money"] < amount:
+	if GameManager.to_keep["money"] < amount:
 		return
-	stats["money"] = max(stats["money"] - amount,0)
+	GameManager.to_keep["money"] = max(GameManager.to_keep["money"] - amount,0)
 
 func damage(amount : int) -> void:
 	if amount < 0:

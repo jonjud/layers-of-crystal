@@ -6,7 +6,7 @@ var player : Node2D
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	if player:
-		hp_bar.max_value = player.stats["max_hp"]
+		hp_bar.max_value = GameManager.to_keep["max_hp"]
 		hp_bar.value = player.hp
 		
 

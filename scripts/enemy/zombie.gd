@@ -1,10 +1,11 @@
 extends CharacterBody2D
+class_name Zombie
 
 var speed : float = 60.0
 var wiz : Node2D
 
 var hp : float
-var max_hp : float = 100.0
+var max_hp : float = 600.0
 var money : int = 30
 
 var damage_amount : float = 60.0

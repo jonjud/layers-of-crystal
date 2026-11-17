@@ -12,6 +12,7 @@ size = Vector2(640, 145)
 
 [node name="main" type="Node2D" unique_id=1770916672]
 script = ExtResource("1_0wfyh")
+zombie_scene = ExtResource("4_jyhfs")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1345326242]
 repeat_size = Vector2(640, 0)
@@ -33,9 +34,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
+offset_left = -500.0
 offset_top = -72.5
-offset_right = 320.0
+offset_right = 500.0
 offset_bottom = 72.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -47,17 +48,11 @@ shape = SubResource("RectangleShape2D_htemk")
 [node name="player" parent="." unique_id=1168915799 instance=ExtResource("1_o5qli")]
 position = Vector2(50, 170)
 
-[node name="Zombie" parent="." unique_id=704269014 instance=ExtResource("4_jyhfs")]
-position = Vector2(362, 178)
-disable_mode = 1
-
-[node name="Zombie2" parent="." unique_id=1031054374 instance=ExtResource("4_jyhfs")]
-position = Vector2(414, 159)
-
-[node name="Zombie3" parent="." unique_id=570317170 instance=ExtResource("4_jyhfs")]
-position = Vector2(463, 168)
-
 [node name="GameOver" parent="." unique_id=1206959117 instance=ExtResource("5_tbgi4")]
 visible = false
 
 [node name="HUD" parent="." unique_id=1847864289 instance=ExtResource("6_tefeu")]
+
+[node name="Timer" type="Timer" parent="." unique_id=1466691320]
+wait_time = 2.0
+autostart = true

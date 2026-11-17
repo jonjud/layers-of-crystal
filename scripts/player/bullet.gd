@@ -21,6 +21,6 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body : Node2D) -> void:
 	if body.is_in_group("zombie"):
 		if body.has_method("damage"):
-			for i in player.base_damages:
-				body.damage(player.base_damages[i])
+			for i in GameManager.true_damages:
+				body.damage(GameManager.true_damages[i])
 			queue_free()
