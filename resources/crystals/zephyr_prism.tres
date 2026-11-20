@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_cd"]
+
+[resource]
+script = ExtResource("1_cd")
+display_name = "Zephyr Prism"
+description = "Wind damage on top, crit damage at the bottom."
+color = Color(0.43, 0.94, 0.76, 1)
+active_type = "wind damage"
+passive_type = "crit damage"
+max_active = 6.5
+max_passive = 2.0
+buy_price = 90
+cost_base = 60
+cost_growth = 1.32
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"

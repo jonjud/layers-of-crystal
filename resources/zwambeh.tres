@@ -1,7 +1,14 @@
 [gd_resource type="Resource" script_class="ZombieData" format=3 uid="uid://by8rgshdskyi"]
 
-[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_78quc"]
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_zd"]
 
 [resource]
-script = ExtResource("1_78quc")
+script = ExtResource("1_zd")
+display_name = "Walker"
+max_health = 160.0
+speed = 32.0
+damage = 20.0
+money = 20
+color = Color(0.86, 0.08, 0.24, 1)
+size = 32.0
 metadata/_custom_type_script = "uid://mgu10cdpn70m"

@@ -3,7 +3,13 @@ extends Node
 # ข้อมูลที่ต้องรอดข้ามฉาก (main <-> shop)
 var to_keep : Dictionary = {}
 
-# ค่า Damage พื้นฐานของแต่ละประเภท ก่อนนำ Modifier มาคำนวณ
+# ระบบ Gambling (สร้างเป็นลูกของ autoload นี้ ไม่ต้องแก้ project.godot)
+var luck : LuckManager
+# โบนัสเริ่มเกมจากสล็อตฟรีหน้าเมนู (ถูกใช้ตอน reset_all)
+var pending_bonus : Dictionary = {}
+# จำนวน wave ทั้งหมด (SpawnManager ตั้งให้ตอนเริ่มฉาก)
+var total_waves : int = 8
+
 var base_damages : Dictionary = {
 	"physical damage" : 10,
 	"fire damage" : 5,
@@ -28,7 +34,6 @@ var mods : Dictionary = {
 # damage จริงหลังคิด modifier (ถูกคำนวณใหม่ใน update_all_damage)
 var true_damages : Dictionary = {}
 
-# สร้าง Dictionary ของค่าตั้งต้นที่ต้องเก็บไว้ระหว่างเปลี่ยนฉากหรือเริ่มเกม
 func _default_keep() -> Dictionary:
 	return {
 		"max_hp" : 100.0,
@@ -36,39 +41,62 @@ func _default_keep() -> Dictionary:
 		"money" : 0.0,
 		"kill count" : 0,
 		"current wave" : 1,
+		"wave start money" : 0.0,   # ไว้คำนวณกำไรของ wave สำหรับ Wager
 	}
 
-# ตั้งค่าเริ่มต้นและเชื่อม Signal ที่ GameManager ต้องรับรู้
 func _ready() -> void:
 	to_keep = _default_keep()
+	luck = LuckManager.new()
+	luck.name = "LuckManager"
+	add_child(luck)
 	SignalBus.zombie_died.connect(_on_zombie_died)
 	SignalBus.money_added.connect(_on_money_added)
 	SignalBus.wave_passed.connect(_on_wave_passed)
 	# สำคัญ: ให้ true_damages มีค่าตั้งแต่ก่อนมี modifier ตัวแรก
 	# (ไม่งั้นกระสุนจะได้ damage 0 จนกว่าจะมีใครเรียก add_modifier)
 	update_all_damage()
+	# INJECT THEME: ตั้งที่ root window -> ทุก Control ในเกม (menu/shop/hud/...) ใช้ธีมนี้
+	get_tree().root.theme = GameTheme.build()
 
-# รีเซ็ตข้อมูลเกม, Modifier และ Crystal เมื่อเริ่มเกมใหม่
+# เรียกตอนเริ่มทุก wave (main._ready) -- รวมถึงตอน Restart หลังตาย
+func begin_wave() -> void:
+	to_keep["wave start money"] = to_keep["money"]
+	luck.reset_wave()
+
+# ปุ่ม New Game เรียกอันนี้ (Autoload ไม่ถูกรีเซ็ตเองตอนเปลี่ยนฉาก)
 func reset_all() -> void:
 	to_keep = _default_keep()
 	for type in mods:
 		mods[type].clear()
 	update_all_damage()
 	CrystalManager.reset()
+	luck.reset_all()
+	_apply_start_bonus()
 
-# เพิ่มจำนวน Zombie ที่กำจัดได้
+func _apply_start_bonus() -> void:
+	if pending_bonus.is_empty():
+		return
+	to_keep["money"] += float(pending_bonus.get("gold", 0))
+	to_keep["max_hp"] += float(pending_bonus.get("max_hp", 0))
+	if pending_bonus.get("free_crystal", false):
+		var list : Array[CrystalData] = CrystalCatalog.all()
+		if not list.is_empty():
+			CrystalManager.grant(list.pick_random(), 2)
+	pending_bonus = {}
+
 func _on_zombie_died() -> void:
 	to_keep["kill count"] += 1
 
-# เพิ่มเงินให้ผู้เล่นตามจำนวนที่ได้รับ
 func _on_money_added(amount : int) -> void:
 	to_keep["money"] += amount
 
-# เพิ่มเลข Wave เมื่อผ่าน Wave ปัจจุบัน
 func _on_wave_passed() -> void:
 	to_keep["current wave"] += 1
 
-# คำนวณ Damage ของประเภทที่ระบุ โดยนำ Modifier ของแต่ละแหล่งมาคูณต่อกัน
+# ตัวคูณเงินรวม: crystal (Gold) x buff Midas
+func total_gold_multiplier() -> float:
+	return CrystalManager.gold_multiplier() * luck.gold_buff_multiplier()
+
 func calculate_damage(type : String) -> float:
 	if not base_damages.has(type):
 		return 0.0
@@ -77,19 +105,16 @@ func calculate_damage(type : String) -> float:
 		result *= (1.0 + mods[type][source])
 	return result
 
-# คำนวณ Damage จริงใหม่ให้ครบทุกประเภท แล้วเก็บไว้ใน true_damages
 func update_all_damage() -> void:
 	for type in base_damages:
 		true_damages[type] = calculate_damage(type)
 
-# เพิ่มหรือแทนที่ Modifier ของ Damage ตามประเภทและแหล่งที่มา
 func add_modifier(type : String, source : String, percent : float) -> void:
 	if not mods.has(type):
 		return
 	mods[type][source] = percent
 	update_all_damage()
 
-# ลบ Modifier ของแหล่งที่มาที่ระบุ แล้วคำนวณ Damage ใหม่
 func remove_modifier(type : String, source : String) -> void:
 	if not mods.has(type):
 		return

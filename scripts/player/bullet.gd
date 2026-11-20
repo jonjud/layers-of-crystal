@@ -1,38 +1,45 @@
 extends Area2D
 class_name Bullet
 
-# ความเร็วในการเคลื่อนที่ของกระสุน
 var speed : float = 300.0
-# ตัวแปรเก็บค่าความเสียหาย (ในไฟล์นี้ยังไม่ได้ถูกนำไปใช้)
 var damage : float
-# เก็บ reference ของ Player ที่อยู่ใน group "player"
 var player : Node2D
-# เก็บ reference ของ Zombie ที่อยู่ใน group "zombie"
 var zombie : Node2D
-# เก็บทิศทางจากกระสุนไปยัง Zombie
 var dir : Vector2
 
-# เชื่อมสัญญาณชน ค้นหา Player/Zombie และตั้งเวลาให้กระสุนหายไป
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	player = get_tree().get_first_node_in_group("player")
-	zombie = get_tree().get_first_node_in_group("zombie")
+	zombie = _pick_target()
 	get_tree().create_timer(6.0).timeout.connect(queue_free)
 
-# เคลื่อนที่ไปทาง Zombie ถ้ายังมีอยู่ และเคลื่อนที่ไปทางขวาด้วยทุกครั้ง
+# ซอมบี้ที่อยู่ใกล้กระสุนที่สุด (เดิมเลือก "ตัวแรกในกลุ่ม" และไม่เปลี่ยนเป้าแม้ตัวนั้นตายแล้ว)
+func _pick_target() -> Node2D:
+	var best : Node2D = null
+	var best_dist : float = INF
+	for z in get_tree().get_nodes_in_group("zombie"):
+		if not is_instance_valid(z):
+			continue
+		var d : float = global_position.distance_squared_to(z.global_position)
+		if d < best_dist:
+			best_dist = d
+			best = z
+	return best
+
 func _physics_process(delta: float) -> void:
+	if not is_instance_valid(zombie):
+		zombie = _pick_target()   # เป้าตาย -> หาเป้าใหม่
 	if is_instance_valid(zombie):
 		dir = (zombie.global_position - global_position).normalized()
 		position += dir * speed * delta
 	position += Vector2.RIGHT * speed * delta
 
-# เมื่อชนวัตถุ ถ้าเป็น Zombie จะคำนวณคริติคอลและส่งค่าความเสียหายให้
 func _on_body_entered(body : Node2D) -> void:
 	if body.is_in_group("zombie"):
-		if body.has_method("damage"):
-			# สุ่มตัวคูณความเสียหายคริติคอล
-			var crit : float = CrystalManager.roll_crit_multiplier()
-			# วนส่งความเสียหายแต่ละประเภทที่ GameManager เก็บไว้
+		var crit : float = CrystalManager.roll_crit_multiplier()
+		if body.has_method("hit"):
+			body.hit(GameManager.true_damages, crit)
+		elif body.has_method("damage"):
 			for type in GameManager.true_damages:
 				body.damage(GameManager.true_damages[type] * crit, type)
-			queue_free()
+		queue_free()

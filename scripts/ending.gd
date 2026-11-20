@@ -1,20 +1,16 @@
 extends Control
 
 
-# เส้นทางฉากเมนูหลักที่ใช้กลับไปหลังจบเกม
 const MENU_SCENE : String = "res://scenes/menu.tscn"
 
-# สร้างฉากจบด้วยพื้นหลังสีขาว ข้อความขอบคุณ และปุ่มกลับเมนู
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
-	# สร้างพื้นหลังสีขาวให้เต็มพื้นที่ของหน้าจอ
 	var bg := ColorRect.new()
 	bg.color = Color.WHITE
 	add_child(bg)
 	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
-	# วางกลุ่ม UI ไว้กึ่งกลางหน้าจอ
 	var center := CenterContainer.new()
 	add_child(center)
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -23,7 +19,6 @@ func _ready() -> void:
 	box.add_theme_constant_override("separation", 24)
 	center.add_child(box)
 
-	# แสดงข้อความขอบคุณผู้เล่นด้วยตัวอักษรสีดำ
 	var label := Label.new()
 	label.text = "Thank you for playing"
 	label.add_theme_color_override("font_color", Color.BLACK)
@@ -31,7 +26,12 @@ func _ready() -> void:
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(label)
 
-	# สร้างปุ่มกลับเมนู โดยปิดการใช้งานไว้จนกว่า Animation จะจบ
+	var stats := Label.new()
+	stats.text = "Kills: %d     Crystals owned: %d" % [GameManager.to_keep["kill count"], CrystalManager.owned.size()]
+	stats.add_theme_color_override("font_color", Color(0.3, 0.3, 0.4))
+	stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(stats)
+
 	var button := Button.new()
 	button.text = "Main Menu"
 	button.disabled = true
@@ -45,6 +45,5 @@ func _ready() -> void:
 	tween.tween_property(box, "modulate:a", 1.0, 1.5)
 	tween.tween_callback(func(): button.disabled = false)
 
-# เปลี่ยนจากฉากจบกลับไปยังหน้าเมนูหลักเมื่อกดปุ่ม
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file(MENU_SCENE)

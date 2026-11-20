@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_cd"]
+
+[resource]
+script = ExtResource("1_cd")
+display_name = "Solar Lumen"
+description = "Light damage on top, LUCK at the bottom (better orbs, wagers and slots)."
+color = Color(1.0, 0.89, 0.37, 1)
+active_type = "light damage"
+passive_type = "luck"
+max_active = 6.5
+max_passive = 1.5
+buy_price = 90
+cost_base = 60
+cost_growth = 1.32
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"

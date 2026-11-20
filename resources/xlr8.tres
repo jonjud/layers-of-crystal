@@ -1,12 +1,15 @@
 [gd_resource type="Resource" script_class="ZombieData" format=3 uid="uid://beb7ukiy4hkgi"]
 
-[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_gkbd7"]
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_zd"]
 
 [resource]
-script = ExtResource("1_gkbd7")
+script = ExtResource("1_zd")
+display_name = "Runner"
 zombie_type = 2
-max_health = 200.0
-speed = 80.0
-damage = 10.0
-color = Color(0.5647059, 0.93333334, 0.5686275, 1)
+max_health = 70.0
+speed = 85.0
+damage = 15.0
+money = 25
+color = Color(0.565, 0.933, 0.569, 1)
+size = 28.0
 metadata/_custom_type_script = "uid://mgu10cdpn70m"

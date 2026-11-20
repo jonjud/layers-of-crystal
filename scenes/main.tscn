@@ -8,14 +8,17 @@
 [ext_resource type="Script" uid="uid://csbeux4f2eh0e" path="res://systems/spawn_manager.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c5x6cop7080io" path="res://scenes/enemies/zombie.tscn" id="7_tipki"]
 [ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="8_85g3d"]
-[ext_resource type="Resource" uid="uid://c3vd7n5l3wpqt" path="res://resources/wave/wave_1.tres" id="9_choun"]
-[ext_resource type="Resource" uid="uid://deo8rqx0vaeho" path="res://resources/wave/wave_2.tres" id="10_choun"]
-[ext_resource type="Resource" uid="uid://wl8a7c67huk3" path="res://resources/wave/wave_3.tres" id="11_trceg"]
-[ext_resource type="Resource" uid="uid://cc4hxea2kxfb5" path="res://resources/wave/wave_4.tres" id="12_a8y0u"]
-[ext_resource type="Resource" uid="uid://duq7ckhfbp2er" path="res://resources/wave/wave_5.tres" id="13_jkv2x"]
+[ext_resource type="Resource" uid="uid://c3vd7n5l3wpqt" path="res://resources/wave/wave_1.tres" id="wave_1"]
+[ext_resource type="Resource" uid="uid://deo8rqx0vaeho" path="res://resources/wave/wave_2.tres" id="wave_2"]
+[ext_resource type="Resource" path="res://resources/wave/wave_3.tres" id="wave_3"]
+[ext_resource type="Resource" path="res://resources/wave/wave_4.tres" id="wave_4"]
+[ext_resource type="Resource" path="res://resources/wave/wave_5.tres" id="wave_5"]
+[ext_resource type="Resource" path="res://resources/wave/wave_6.tres" id="wave_6"]
+[ext_resource type="Resource" path="res://resources/wave/wave_7.tres" id="wave_7"]
+[ext_resource type="Resource" path="res://resources/wave/wave_8.tres" id="wave_8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
-size = Vector2(640, 145)
+size = Vector2(1000, 145)
 
 [node name="main" type="Node2D" unique_id=1770916672]
 script = ExtResource("1_0wfyh")
@@ -59,21 +62,18 @@ visible = false
 
 [node name="HUD" parent="." unique_id=1847864289 instance=ExtResource("6_tefeu")]
 
-[node name="Timer" type="Timer" parent="." unique_id=1466691320]
-wait_time = 2.0
-autostart = true
-
 [node name="GoShopButton" type="Button" parent="." unique_id=507045891]
-offset_left = 498.0
-offset_top = 73.0
-offset_right = 590.0
-offset_bottom = 104.0
-text = "Go to shop"
+offset_left = 230.0
+offset_top = 316.0
+offset_right = 410.0
+offset_bottom = 348.0
+text = "GO TO SHOP  >"
 
 [node name="SpawnManager" type="Node" parent="." unique_id=423739576]
 script = ExtResource("7_o6xl0")
 zombie_scene = ExtResource("7_tipki")
-waves = Array[ExtResource("8_85g3d")]([ExtResource("9_choun"), ExtResource("10_choun"), ExtResource("11_trceg"), ExtResource("12_a8y0u"), ExtResource("13_jkv2x")])
+waves = Array[ExtResource("8_85g3d")]([ExtResource("wave_1"), ExtResource("wave_2"), ExtResource("wave_3"), ExtResource("wave_4"), ExtResource("wave_5"), ExtResource("wave_6"), ExtResource("wave_7"), ExtResource("wave_8")])
+shuffle_queue = true
 
 [node name="Timer" type="Timer" parent="SpawnManager" unique_id=1956901032]
 autostart = true

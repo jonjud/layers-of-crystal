@@ -1,15 +1,16 @@
 extends Node
 
-# แจ้งว่าผู้เล่นกดปุ่มยิง
 signal fire_pressed
-# แจ้งเมื่อ Zombie ถูกกำจัด
 signal zombie_died
 
-# แจ้งเมื่อผู้เล่นตาย
 signal player_died
 
-# แจ้งจำนวนเงินที่ได้รับ โดยส่งจำนวนเงินผ่าน amount
 signal money_added(amount : int)
 
 signal wave_passed    # จบ wave ทั่วไป -> main โชว์ปุ่ม shop / GameManager บวกเลข wave
 signal level_passed   # จบ wave สุดท้าย -> ฉากจบเกม (ไม่บวกเลข wave)
+
+# ---- Gambling ----
+signal orb_rolled(outcome : Dictionary)                 # เก็บ Lucky Orb แล้ว -> HUD เริ่มหมุน
+signal orb_applied(outcome : Dictionary, detail : String)  # ผลถูกใช้จริง -> HUD โชว์ผล
+signal buffs_changed                                    # buff ชั่วคราวเปลี่ยน

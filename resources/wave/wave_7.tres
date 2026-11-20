@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WaveData" format=3]
+
+[ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="1_wd"]
+[ext_resource type="Script" uid="uid://b4ds5t4ia8bpg" path="res://systems/zombie_and_amount.gd" id="2_za"]
+[ext_resource type="Resource" uid="uid://by8rgshdskyi" path="res://resources/zwambeh.tres" id="z_N"]
+[ext_resource type="Resource" uid="uid://beb7ukiy4hkgi" path="res://resources/xlr8.tres" id="z_R"]
+[ext_resource type="Resource" uid="uid://dqugshk0wqet1" path="res://resources/big_smoke.tres" id="z_T"]
+
+[sub_resource type="Resource" id="Resource_N7"]
+script = ExtResource("2_za")
+type = ExtResource("z_N")
+count = 13
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[sub_resource type="Resource" id="Resource_R7"]
+script = ExtResource("2_za")
+type = ExtResource("z_R")
+count = 8
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[sub_resource type="Resource" id="Resource_T7"]
+script = ExtResource("2_za")
+type = ExtResource("z_T")
+count = 3
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[resource]
+script = ExtResource("1_wd")
+type = Array[ExtResource("2_za")]([SubResource("Resource_N7"), SubResource("Resource_R7"), SubResource("Resource_T7")])
+spawn_interval = 1.2
+hp_multiplier = 5.2
+speed_multiplier = 1.15
+metadata/_custom_type_script = "uid://wuour2nadwxa"

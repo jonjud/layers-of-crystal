@@ -1,13 +1,24 @@
 [gd_resource type="Resource" script_class="ZombieData" format=3 uid="uid://dqugshk0wqet1"]
 
-[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_0r5ur"]
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="1_zd"]
 
 [resource]
-script = ExtResource("1_0r5ur")
+script = ExtResource("1_zd")
+display_name = "Tank"
 zombie_type = 1
-max_health = 3000.0
-speed = 10.0
-damage = 60.0
-color = Color(0.5762587, 0.46305305, 0.96133345, 1)
-size = 64.0
+max_health = 700.0
+speed = 14.0
+damage = 45.0
+money = 60
+color = Color(0.576, 0.463, 0.961, 1)
+size = 56.0
+resistances = {
+"physical damage": 0.35,
+"fire damage": 0.0,
+"wind damage": 0.0,
+"water damage": 0.0,
+"earth damage": 0.35,
+"light damage": 0.0,
+"darkness damage": 0.0
+}
 metadata/_custom_type_script = "uid://mgu10cdpn70m"

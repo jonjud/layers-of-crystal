@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_cd"]
+
+[resource]
+script = ExtResource("1_cd")
+display_name = "Gale Rune"
+description = "Wind damage on top, faster firing at the bottom."
+color = Color(0.66, 0.94, 1.0, 1)
+active_type = "wind damage"
+passive_type = "fire rate"
+max_active = 5.2
+max_passive = 1.0
+buy_price = 110
+cost_base = 70
+cost_growth = 1.34
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"
