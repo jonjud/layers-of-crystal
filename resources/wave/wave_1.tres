@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://c3vd7n5l3wpqt"]
+
+[ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="1_v2xhq"]
+[ext_resource type="Script" uid="uid://b4ds5t4ia8bpg" path="res://systems/zombie_and_amount.gd" id="2_eru7y"]
+[ext_resource type="Script" uid="uid://mgu10cdpn70m" path="res://systems/zombie_data.gd" id="3_eru7y"]
+[ext_resource type="Resource" uid="uid://beb7ukiy4hkgi" path="res://resources/xlr8.tres" id="4_ybn1g"]
+
+[sub_resource type="Resource" id="Resource_7rbye"]
+script = ExtResource("3_eru7y")
+metadata/_custom_type_script = "uid://mgu10cdpn70m"
+
+[sub_resource type="Resource" id="Resource_0on8a"]
+script = ExtResource("2_eru7y")
+type = SubResource("Resource_7rbye")
+count = 5
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[sub_resource type="Resource" id="Resource_7yf16"]
+script = ExtResource("2_eru7y")
+type = ExtResource("4_ybn1g")
+count = 3
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[resource]
+script = ExtResource("1_v2xhq")
+type = Array[ExtResource("2_eru7y")]([SubResource("Resource_0on8a"), SubResource("Resource_7yf16")])
+metadata/_custom_type_script = "uid://wuour2nadwxa"

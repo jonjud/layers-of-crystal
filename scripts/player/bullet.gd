@@ -11,9 +11,10 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	player = get_tree().get_first_node_in_group("player")
 	zombie = get_tree().get_first_node_in_group("zombie")
+	get_tree().create_timer(6.0).timeout.connect(queue_free)
 
 func _physics_process(delta: float) -> void:
-	if zombie:
+	if is_instance_valid(zombie):
 		dir = (zombie.global_position - global_position).normalized()
 		position += dir * speed * delta
 	position += Vector2.RIGHT * speed * delta
@@ -21,6 +22,8 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body : Node2D) -> void:
 	if body.is_in_group("zombie"):
 		if body.has_method("damage"):
-			for i in GameManager.true_damages:
-				body.damage(GameManager.true_damages[i],i)
+			# randomized a crit
+			var crit : float = CrystalManager.roll_crit_multiplier()
+			for type in GameManager.true_damages:
+				body.damage(GameManager.true_damages[type] * crit, type)
 			queue_free()

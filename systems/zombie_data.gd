@@ -1,13 +1,12 @@
 extends Resource
 class_name ZombieData
 
-
-enum ZombieTypes { #Type of ZWAMBEH (haha it's weird)
-	NORMAL, #AVERAGE HEALTH
-	TANK, #HIGH HEALTH , 
-	RUNNER, #SUPAFAST
+enum ZombieTypes { # Type of ZWAMBEH (haha it's weird)
+	NORMAL,    # AVERAGE HEALTH
+	TANK,      # HIGH HEALTH
+	RUNNER,    # SUPAFAST
 	PIGGYBANK,
-	BOSS #SPECIAL GRADE CURSE
+	BOSS       # SPECIAL GRADE CURSE
 }
 
 @export_group("Identity")
@@ -25,11 +24,11 @@ enum ZombieTypes { #Type of ZWAMBEH (haha it's weird)
 @export var size : float = 32.0
 
 @export_group("Damage Resistance")
-# Key = Damage Type
+# Key = ชนิด damage (ต้องตรงกับ key ใน GameManager.base_damages เป๊ะ)
 # Value = Damage Reduction (0.0 - 1.0)
 @export var resistances : Dictionary = {
-	"physical": 0.0,
-	"fire": 0.0,
+	"physical damage" : 0.0,
+	"fire damage" : 0.0,
 	"wind damage" : 0.0,
 	"water damage" : 0.0,
 	"earth damage" : 0.0,
@@ -40,15 +39,13 @@ enum ZombieTypes { #Type of ZWAMBEH (haha it's weird)
 func random_type_of_resistance_and_assign_values() -> void:
 	if zombie_type != ZombieTypes.NORMAL:
 		return
-	#duplicate and erase to prevent the same key
-	var avail_keys = resistances.keys()
+	# erase key ที่สุ่มได้แล้ว เพื่อไม่ให้สุ่มซ้ำ
+	var avail_keys : Array = resistances.keys()
 	for i in range(3):
 		var rand_key : String = avail_keys.pick_random()
-		resistances[rand_key] = randf_range(0.1,0.8)
+		resistances[rand_key] = randf_range(0.1, 0.8)
 		avail_keys.erase(rand_key)
-	for i in resistances:
-		print(i,resistances[i])
 
 func calculate_recieved_damage(amount : float, type : String) -> float:
-	var reduction : float = resistances.get(type,0.0) #หาไม่เจอให้ใส่ 0.0
+	var reduction : float = resistances.get(type, 0.0)   # หาไม่เจอให้ใช้ 0.0
 	return amount * (1.0 - reduction)

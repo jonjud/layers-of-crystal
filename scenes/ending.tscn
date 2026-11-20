@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b000lki0crb2l"]
+
+[ext_resource type="Script" uid="uid://wat42306285d" path="res://scripts/ending.gd" id="1_mqjok"]
+
+[node name="Ending" type="Control" unique_id=146063895]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mqjok")

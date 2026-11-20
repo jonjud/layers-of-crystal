@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Layers of Crystals"
-run/main_scene="uid://dy4fatj4ik4h7"
+run/main_scene="uid://bee5vb5jpjiol"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://r0xkggl3xup8"
 GameManager="*uid://bx2yqeij41681"
+CrystalManager="*uid://0uue0l7bgtni"
 
 [display]
 

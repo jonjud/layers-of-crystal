@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3 uid="uid://doksonb7kfxxy"]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_eevb7"]
+
+[resource]
+script = ExtResource("1_eevb7")
+display_name = "Crimson Edge"
+passive_type = "gold"
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"

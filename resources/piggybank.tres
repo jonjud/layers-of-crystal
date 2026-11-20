@@ -5,5 +5,9 @@
 [resource]
 script = ExtResource("1_mao1o")
 zombie_type = 3
+max_health = 300.0
+speed = 25.0
+damage = 10.0
+money = 700
 color = Color(1, 0.84313726, 0, 1)
 metadata/_custom_type_script = "uid://mgu10cdpn70m"
