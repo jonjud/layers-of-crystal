@@ -4,11 +4,19 @@ extends Node2D
 @export var bullet_scene : PackedScene
 # เก็บตำแหน่งแกน Y เดิมของไม้กายสิทธิ์ไว้ใช้ตอนเล่นแอนิเมชัน
 var original_y : float
+@export var fire_interval : float = 0.1
+var cooldown : float = 0.0
 
 # เชื่อม Signal สำหรับการยิง และจำตำแหน่งเริ่มต้นของไม้กายสิทธิ์
 func _ready() -> void:
-	SignalBus.fire_pressed.connect(_on_fire_pressed)
 	original_y = position.y
+
+func _process(delta: float) -> void:
+	cooldown -= delta
+	# ยิงเมื่อพร้อม และมีซอมบี้อยู่ในฉาก
+	if cooldown <= 0.0 and get_tree().get_first_node_in_group("zombie") != null:
+		cooldown = fire_interval
+		_on_fire_pressed()
 
 # ทำให้ไม้กายสิทธิ์ขยับขึ้นลง แล้วสร้างกระสุนออกมา
 func _on_fire_pressed() -> void:

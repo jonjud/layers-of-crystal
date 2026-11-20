@@ -5,6 +5,16 @@
 [resource]
 script = ExtResource("1_hcy7r")
 zombie_type = 4
+max_health = 5000.0
 color = Color(0.8627451, 0.078431375, 0.6039216, 1)
 size = 96.0
+resistances = {
+"darkness damage": 0.5,
+"earth damage": 0.5,
+"fire damage": 0.5,
+"light damage": 0.5,
+"physical damage": 1.0,
+"water damage": 0.5,
+"wind damage": 0.5
+}
 metadata/_custom_type_script = "uid://mgu10cdpn70m"
