@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WaveData" format=3]
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://uuqta3yba4p4"]
 
 [ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="1_wd"]
 [ext_resource type="Script" uid="uid://b4ds5t4ia8bpg" path="res://systems/zombie_and_amount.gd" id="2_za"]

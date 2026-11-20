@@ -21,6 +21,4 @@ metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
 script = ExtResource("1_wd")
 type = Array[ExtResource("2_za")]([SubResource("Resource_N1"), SubResource("Resource_R1")])
 spawn_interval = 1.8
-hp_multiplier = 1.0
-speed_multiplier = 1.0
 metadata/_custom_type_script = "uid://wuour2nadwxa"

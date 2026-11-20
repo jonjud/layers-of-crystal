@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="WaveData" format=3]
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://bew00r8p3gvlw"]
 
 [ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="1_wd"]
 [ext_resource type="Script" uid="uid://b4ds5t4ia8bpg" path="res://systems/zombie_and_amount.gd" id="2_za"]
+[ext_resource type="Resource" uid="uid://drwrxf4mx82fp" path="res://resources/boss.tres" id="z_B"]
 [ext_resource type="Resource" uid="uid://by8rgshdskyi" path="res://resources/zwambeh.tres" id="z_N"]
+[ext_resource type="Resource" uid="uid://bb1tsophr1qoa" path="res://resources/piggybank.tres" id="z_P"]
 [ext_resource type="Resource" uid="uid://beb7ukiy4hkgi" path="res://resources/xlr8.tres" id="z_R"]
 [ext_resource type="Resource" uid="uid://dqugshk0wqet1" path="res://resources/big_smoke.tres" id="z_T"]
-[ext_resource type="Resource" uid="uid://bb1tsophr1qoa" path="res://resources/piggybank.tres" id="z_P"]
-[ext_resource type="Resource" uid="uid://drwrxf4mx82fp" path="res://resources/boss.tres" id="z_B"]
 
 [sub_resource type="Resource" id="Resource_N8"]
 script = ExtResource("2_za")

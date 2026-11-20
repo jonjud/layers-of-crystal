@@ -10,12 +10,12 @@
 [ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="8_85g3d"]
 [ext_resource type="Resource" uid="uid://c3vd7n5l3wpqt" path="res://resources/wave/wave_1.tres" id="wave_1"]
 [ext_resource type="Resource" uid="uid://deo8rqx0vaeho" path="res://resources/wave/wave_2.tres" id="wave_2"]
-[ext_resource type="Resource" path="res://resources/wave/wave_3.tres" id="wave_3"]
-[ext_resource type="Resource" path="res://resources/wave/wave_4.tres" id="wave_4"]
-[ext_resource type="Resource" path="res://resources/wave/wave_5.tres" id="wave_5"]
-[ext_resource type="Resource" path="res://resources/wave/wave_6.tres" id="wave_6"]
-[ext_resource type="Resource" path="res://resources/wave/wave_7.tres" id="wave_7"]
-[ext_resource type="Resource" path="res://resources/wave/wave_8.tres" id="wave_8"]
+[ext_resource type="Resource" uid="uid://uuqta3yba4p4" path="res://resources/wave/wave_3.tres" id="wave_3"]
+[ext_resource type="Resource" uid="uid://d3qfw27df1kft" path="res://resources/wave/wave_4.tres" id="wave_4"]
+[ext_resource type="Resource" uid="uid://bp06mqp1h18ro" path="res://resources/wave/wave_5.tres" id="wave_5"]
+[ext_resource type="Resource" uid="uid://dgkv4nq7cvl5p" path="res://resources/wave/wave_6.tres" id="wave_6"]
+[ext_resource type="Resource" uid="uid://cb0s2x54xj6sh" path="res://resources/wave/wave_7.tres" id="wave_7"]
+[ext_resource type="Resource" uid="uid://bew00r8p3gvlw" path="res://resources/wave/wave_8.tres" id="wave_8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(1000, 145)
@@ -73,7 +73,6 @@ text = "GO TO SHOP  >"
 script = ExtResource("7_o6xl0")
 zombie_scene = ExtResource("7_tipki")
 waves = Array[ExtResource("8_85g3d")]([ExtResource("wave_1"), ExtResource("wave_2"), ExtResource("wave_3"), ExtResource("wave_4"), ExtResource("wave_5"), ExtResource("wave_6"), ExtResource("wave_7"), ExtResource("wave_8")])
-shuffle_queue = true
 
 [node name="Timer" type="Timer" parent="SpawnManager" unique_id=1956901032]
 autostart = true

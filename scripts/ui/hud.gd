@@ -16,6 +16,7 @@ var orb_detail : Label
 var _orb_tween : Tween
 
 var wager : WagerPanel
+var layers_box : VBoxContainer
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -25,6 +26,9 @@ func _ready() -> void:
 	_build_info_labels()
 	_build_orb_banner()
 	_build_wager()
+	_build_layers_box()
+	CrystalManager.layers_changed.connect(_refresh_layers)
+	_refresh_layers()
 	_show_wave_banner()
 	SignalBus.buffs_changed.connect(_rebuild_buffs)
 	SignalBus.orb_rolled.connect(_on_orb_rolled)
@@ -175,3 +179,25 @@ func _on_orb_applied(outcome : Dictionary, detail : String) -> void:
 func _on_wave_passed() -> void:
 	# รอให้เหรียญสุดท้ายลอยเข้าตัวก่อน (connect กับ method ของ self -> ปลอดภัยถ้าฉากถูกปิดก่อน)
 	get_tree().create_timer(1.4).timeout.connect(wager.open)
+
+func _build_layers_box() -> void:
+	layers_box = VBoxContainer.new()
+	layers_box.position = Vector2(12, 56)   # ใต้เงิน ซ้ายมือ
+	layers_box.add_theme_constant_override("separation", 0)
+	layers_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(layers_box)
+
+func _refresh_layers() -> void:
+	for child in layers_box.get_children():
+		child.queue_free()
+	for slot in CrystalManager.SLOTS:
+		var crystal : CrystalData = CrystalManager.layers[slot]
+		var l := Label.new()
+		l.add_theme_font_size_override("font_size", 10)
+		if crystal == null:
+			l.text = "%d  -" % (slot + 1)
+			l.add_theme_color_override("font_color", GameTheme.MUTED)
+		else:
+			l.text = "%d  %s +%d%%" % [slot + 1, GameTheme.nice(crystal.active_type), roundi(CrystalManager.active_value(slot) * 100.0)]
+			l.add_theme_color_override("font_color", GameTheme.element_color(crystal.active_type))
+		layers_box.add_child(l)
