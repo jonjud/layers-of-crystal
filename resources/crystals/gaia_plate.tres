@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3 uid="uid://bymiernlcelr5"]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_b16cg"]
+
+[resource]
+script = ExtResource("1_b16cg")
+display_name = "Gaia Plate"
+active_type = "earth damage"
+passive_type = "defense"
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"

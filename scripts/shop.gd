@@ -9,6 +9,9 @@ var header : Label
 var slots_box : VBoxContainer
 var catalog_box : VBoxContainer
 
+var layers_tab : Button
+var crystals_tab : Button
+
 func _ready() -> void:
 	_build_layout()
 	CrystalManager.layers_changed.connect(_refresh)
@@ -22,28 +25,62 @@ func _build_layout() -> void:
 	var margin := MarginContainer.new()
 	layer.add_child(margin)
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
 	for side in ["left", "right", "top", "bottom"]:
-		margin.add_theme_constant_override("margin_" + side, 12)
+		margin.add_theme_constant_override("margin_" + side, 6)
 
 	var root := VBoxContainer.new()
-	root.add_theme_constant_override("separation", 10)
+	root.add_theme_constant_override("separation", 5)
 	margin.add_child(root)
 
+	# Header
 	header = Label.new()
 	root.add_child(header)
 
-	var columns := HBoxContainer.new()
-	columns.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	columns.add_theme_constant_override("separation", 24)
-	root.add_child(columns)
+	# Tabs
+	var tabs := HBoxContainer.new()
+	root.add_child(tabs)
 
-	slots_box = _make_column(columns, "LAYERS  (top = strong active / bottom = strong passive)")
-	catalog_box = _make_column(columns, "CRYSTALS")
+	layers_tab = Button.new()
+	layers_tab.text = "LAYERS"
+	layers_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	layers_tab.pressed.connect(_show_layers)
+	tabs.add_child(layers_tab)
 
+	crystals_tab = Button.new()
+	crystals_tab.text = "CRYSTALS"
+	crystals_tab.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	crystals_tab.pressed.connect(_show_crystals)
+	tabs.add_child(crystals_tab)
+
+	# Content
+	var content := Control.new()
+	content.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	root.add_child(content)
+
+	var scroll := ScrollContainer.new()
+	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content.add_child(scroll)
+
+	var content_box := VBoxContainer.new()
+	content_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(content_box)
+
+	slots_box = content_box
+
+	# Catalog container
+	catalog_box = VBoxContainer.new()
+	catalog_box.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	content.add_child(catalog_box)
+
+	# Bottom button
 	var next := Button.new()
-	next.text = "Next Wave"
+	next.text = "NEXT WAVE"
+	next.custom_minimum_size.y = 32
 	next.pressed.connect(_on_next_wave_pressed)
 	root.add_child(next)
+
+	_show_layers()
 
 func _make_column(parent : Node, title : String) -> VBoxContainer:
 	var col := VBoxContainer.new()
@@ -62,19 +99,17 @@ func _make_column(parent : Node, title : String) -> VBoxContainer:
 
 # ---------- วาดใหม่ทุกครั้งที่กองเปลี่ยน (ซื้อ/อัปเกรด/สลับ ล้วนทำให้ layers_changed ยิง) ----------
 func _refresh() -> void:
-	header.text = "Money: %d     Next: Wave %d" % [
+	header.text = "Money: %d  |  Wave: %d" % [
 		roundi(GameManager.to_keep["money"]),
 		GameManager.to_keep["current wave"],
 	]
 	_clear(slots_box)
 	_clear(catalog_box)
-
 	for slot in CrystalManager.SLOTS:
 		slots_box.add_child(_make_slot_row(slot))
-
 	if catalog.is_empty():
 		var warn := Label.new()
-		warn.text = "(Catalog ว่าง: ลาก CrystalData ใส่ใน Inspector)"
+		warn.text = "(Catalog empty)"
 		catalog_box.add_child(warn)
 	for crystal in catalog:
 		catalog_box.add_child(_make_catalog_row(crystal))
@@ -102,11 +137,11 @@ func _make_slot_row(slot : int) -> Control:
 			text += "\n    " + _fmt(crystal.passive_type, CrystalManager.passive_value(slot))
 		label.text = text
 	row.add_child(label)
-
 	var empty : bool = crystal == null
 	row.add_child(_make_button("^", func(): CrystalManager.move_up(slot), empty or slot == 0))
 	row.add_child(_make_button("v", func(): CrystalManager.move_down(slot), empty or slot == CrystalManager.SLOTS - 1))
 	row.add_child(_make_button("x", func(): CrystalManager.unequip(slot), empty))
+	row.add_theme_constant_override("separation", 3)
 	return row
 
 # ---------- แถวของแต่ละแผ่นที่ขาย ----------
@@ -132,6 +167,7 @@ func _make_catalog_row(crystal : CrystalData) -> Control:
 		row.add_child(_make_button("Upgrade %d" % cost, func(): CrystalManager.try_upgrade(crystal), money < cost))
 		if not CrystalManager.is_equipped(crystal):
 			row.add_child(_make_button("Equip", func(): CrystalManager.equip(crystal), CrystalManager.first_empty_slot() == -1))
+			row.add_theme_constant_override("separation", 3)
 	return row
 
 # ---------- ตัวช่วย ----------
@@ -143,7 +179,24 @@ func _make_button(text : String, action : Callable, disabled : bool = false) -> 
 	button.text = text
 	button.disabled = disabled
 	button.pressed.connect(action)
+	button.custom_minimum_size = Vector2(32, 28)
+	button.add_theme_font_size_override("font_size", 11)
 	return button
 
 func _on_next_wave_pressed() -> void:
 	get_tree().change_scene_to_file(MAIN_SCENE)
+
+func _show_layers() -> void:
+	slots_box.get_parent().visible = true
+	catalog_box.visible = false
+
+	layers_tab.disabled = true
+	crystals_tab.disabled = false
+
+
+func _show_crystals() -> void:
+	slots_box.get_parent().visible = false
+	catalog_box.visible = true
+
+	layers_tab.disabled = false
+	crystals_tab.disabled = true

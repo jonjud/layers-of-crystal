@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_eevb7")
 display_name = "Crimson Edge"
+active_type = "physical damage"
 passive_type = "gold"
 metadata/_custom_type_script = "uid://bpuyl4vfneikr"

@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bevb0ko2knpnc"]
 
 [ext_resource type="Script" uid="uid://cimu7akjb62m" path="res://scripts/shop.gd" id="1_xfvoa"]
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="2_8r1wq"]
+[ext_resource type="Resource" uid="uid://cla52m8k2y2o" path="res://resources/crystals/ember_core.tres" id="3_ajxib"]
+[ext_resource type="Resource" uid="uid://doksonb7kfxxy" path="res://resources/crystals/crimson_edge.tres" id="4_y6sft"]
+[ext_resource type="Resource" uid="uid://gvmccp0epvgd" path="res://resources/crystals/tidal_shard.tres" id="5_m4ofw"]
+[ext_resource type="Resource" uid="uid://bymiernlcelr5" path="res://resources/crystals/gaia_plate.tres" id="6_heatd"]
 
 [node name="shop" type="Node2D" unique_id=692468741]
 script = ExtResource("1_xfvoa")
+catalog = Array[ExtResource("2_8r1wq")]([ExtResource("3_ajxib"), ExtResource("4_y6sft"), ExtResource("5_m4ofw"), ExtResource("6_heatd")])

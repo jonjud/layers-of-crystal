@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CrystalData" format=3 uid="uid://gvmccp0epvgd"]
+
+[ext_resource type="Script" uid="uid://bpuyl4vfneikr" path="res://systems/crystal_data.gd" id="1_daiha"]
+
+[resource]
+script = ExtResource("1_daiha")
+display_name = "Tidal Shard"
+active_type = "water damage"
+passive_type = "hp regen"
+metadata/_custom_type_script = "uid://bpuyl4vfneikr"
