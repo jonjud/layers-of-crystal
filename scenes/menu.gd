@@ -1,9 +1,12 @@
 extends Control
 
 
+# เส้นทางฉากเกมหลักที่ใช้เมื่อเริ่มเกมใหม่
 const MAIN_SCENE : String = "res://scenes/main.tscn"
+# ชื่อเกมที่แสดงบนหน้าเมนู
 const GAME_TITLE : String = "LAYERS OF CRYSTAL"   # แก้เป็นชื่อเกม
 
+# ตั้งค่า Control ให้เต็มหน้าจอ แล้วสร้าง Layout ของหน้าเมนู
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
@@ -15,17 +18,20 @@ func _ready() -> void:
 	box.add_theme_constant_override("separation", 20)
 	center.add_child(box)
 
+	# สร้าง Label แสดงชื่อเกมและจัดข้อความให้อยู่กึ่งกลาง
 	var title := Label.new()
 	title.text = GAME_TITLE
 	title.add_theme_font_size_override("font_size", 32)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	box.add_child(title)
 
+	# สร้างปุ่มเริ่มเกมและเชื่อมสัญญาณ pressed
 	var start := Button.new()
 	start.text = "New Game"
 	start.pressed.connect(_on_new_game_pressed)
 	box.add_child(start)
 
+# รีเซ็ตข้อมูลของรอบก่อน แล้วเปลี่ยนไปยังฉากเกมหลัก
 func _on_new_game_pressed() -> void:
 	GameManager.reset_all()   # ล้างเงิน, wave, modifier, กองคริสตัลของรอบเก่า
 	get_tree().change_scene_to_file(MAIN_SCENE)
