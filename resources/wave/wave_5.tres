@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://duq7ckhfbp2er"]
+
+[ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="1_s1wcy"]
+[ext_resource type="Script" uid="uid://b4ds5t4ia8bpg" path="res://systems/zombie_and_amount.gd" id="2_ii275"]
+[ext_resource type="Resource" uid="uid://by8rgshdskyi" path="res://resources/zwambeh.tres" id="3_zwam"]
+[ext_resource type="Resource" uid="uid://beb7ukiy4hkgi" path="res://resources/xlr8.tres" id="4_xlr8"]
+[ext_resource type="Resource" uid="uid://dqugshk0wqet1" path="res://resources/big_smoke.tres" id="5_bigs"]
+
+[sub_resource type="Resource" id="Resource_w5a"]
+script = ExtResource("2_ii275")
+type = ExtResource("3_zwam")
+count = 10
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[sub_resource type="Resource" id="Resource_w5b"]
+script = ExtResource("2_ii275")
+type = ExtResource("4_xlr8")
+count = 8
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[sub_resource type="Resource" id="Resource_w5c"]
+script = ExtResource("2_ii275")
+type = ExtResource("5_bigs")
+count = 4
+metadata/_custom_type_script = "uid://b4ds5t4ia8bpg"
+
+[resource]
+script = ExtResource("1_s1wcy")
+type = Array[ExtResource("2_ii275")]([SubResource("Resource_w5a"), SubResource("Resource_w5b"), SubResource("Resource_w5c")])
+metadata/_custom_type_script = "uid://wuour2nadwxa"

@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://wuour2nadwxa" path="res://systems/wave_data.gd" id="8_85g3d"]
 [ext_resource type="Resource" uid="uid://c3vd7n5l3wpqt" path="res://resources/wave/wave_1.tres" id="9_choun"]
 [ext_resource type="Resource" uid="uid://deo8rqx0vaeho" path="res://resources/wave/wave_2.tres" id="10_choun"]
+[ext_resource type="Resource" uid="uid://wl8a7c67huk3" path="res://resources/wave/wave_3.tres" id="11_trceg"]
+[ext_resource type="Resource" uid="uid://cc4hxea2kxfb5" path="res://resources/wave/wave_4.tres" id="12_a8y0u"]
+[ext_resource type="Resource" uid="uid://duq7ckhfbp2er" path="res://resources/wave/wave_5.tres" id="13_jkv2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htemk"]
 size = Vector2(640, 145)
@@ -70,7 +73,7 @@ text = "Go to shop"
 [node name="SpawnManager" type="Node" parent="." unique_id=423739576]
 script = ExtResource("7_o6xl0")
 zombie_scene = ExtResource("7_tipki")
-waves = Array[ExtResource("8_85g3d")]([ExtResource("9_choun"), ExtResource("10_choun")])
+waves = Array[ExtResource("8_85g3d")]([ExtResource("9_choun"), ExtResource("10_choun"), ExtResource("11_trceg"), ExtResource("12_a8y0u"), ExtResource("13_jkv2x")])
 
 [node name="Timer" type="Timer" parent="SpawnManager" unique_id=1956901032]
 autostart = true
